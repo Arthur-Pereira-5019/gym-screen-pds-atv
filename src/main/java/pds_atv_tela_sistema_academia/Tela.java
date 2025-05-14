@@ -10,6 +10,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Tela extends JFrame {
 
@@ -86,9 +93,23 @@ public class Tela extends JFrame {
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Consultar Regras");
 		mnNewMenu_3.add(mntmNewMenuItem_6);
 		
-		JMenu mnNewMenu_4 = new JMenu("Contato");
-		mnNewMenu_4.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		menuBar.add(mnNewMenu_4);
+		JMenu contatoButton = new JMenu("Contato");
+		contatoButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					System.out.println(Leitor.readFromInputStream(new FileInputStream("data/contato")));
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		contatoButton.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		menuBar.add(contatoButton);
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setEnabled(false);
