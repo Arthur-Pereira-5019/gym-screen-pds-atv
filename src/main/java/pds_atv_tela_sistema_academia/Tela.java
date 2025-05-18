@@ -22,6 +22,7 @@ public class Tela extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private MenuSobre menuSobre;
 
 	/**
 	 * Launch the application.
@@ -87,8 +88,13 @@ public class Tela extends JFrame {
 		mnNewMenu_3.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		menuBar.add(mnNewMenu_3);
 		
-		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Sobre");
-		mnNewMenu_3.add(mntmNewMenuItem_5);
+		JMenuItem botaoSobre = new JMenuItem("Sobre");
+		botaoSobre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new MenuSobre().setVisible(true);
+			}
+		});
+		mnNewMenu_3.add(botaoSobre);
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Consultar Regras");
 		mnNewMenu_3.add(mntmNewMenuItem_6);
@@ -97,15 +103,7 @@ public class Tela extends JFrame {
 		contatoButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				try {
-					System.out.println(Leitor.readFromInputStream(new FileInputStream("data/contato")));
-				} catch (FileNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				new MenuContato().setVisible(true);
 			}
 		});
 		contatoButton.setFont(new Font("SansSerif", Font.PLAIN, 12));
