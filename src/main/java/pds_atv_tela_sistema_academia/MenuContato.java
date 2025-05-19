@@ -13,6 +13,7 @@ import javax.swing.SwingConstants;
 
 public class MenuContato extends JFrame {
 	public MenuContato() {
+		setBounds(100, 100, 450, 300);
 		setTitle("Contato");
 		
 		getContentPane().setLayout(null);

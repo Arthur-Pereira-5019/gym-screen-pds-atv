@@ -14,6 +14,8 @@ import javax.swing.SwingConstants;
 
 public class MenuSobre extends JFrame {
 	public MenuSobre() {
+		setBounds(100, 100, 450, 300);
+
 		setTitle("Sobre");
 		
 		getContentPane().setLayout(null);

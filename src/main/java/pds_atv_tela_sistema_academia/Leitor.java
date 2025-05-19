@@ -21,16 +21,25 @@ public class Leitor {
 			    }
 			  return texto;
 			}
+	
 	public static String getSenha(String source) {
 		try {
 			String temp = ler(source);
-			System.out.println(temp);
-			int i = temp.indexOf("SENHA:");
-			System.out.println(temp.substring(i,temp.indexOf(";", i)));
-			return temp.substring(i,temp.indexOf(";", i));
+			int i = temp.indexOf("SEN:");
+			return temp.substring(i+4,temp.indexOf(";", i));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		}
+		return "";
+	}
+	
+	public static String getNome(String source) {
+		try {
+			String temp = ler(source);
+			int i = temp.indexOf("NOM:");
+			return temp.substring(i+4,temp.indexOf(";", i));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 		}
 		return "";
 	}

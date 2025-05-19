@@ -5,7 +5,9 @@ import java.io.IOException;
 public class ValidarUsuario {
 	
 	public static boolean validar(String validar, String senha) {
-		if(senha == Leitor.getSenha("users/"+validar)) {
+		System.out.println(Leitor.getSenha("users/"+validar));
+		System.out.println(senha);
+		if(senha.equals(Leitor.getSenha("users/"+validar))) {
 			return true;
 		}
 		return false;
