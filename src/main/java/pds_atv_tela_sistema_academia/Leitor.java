@@ -21,6 +21,20 @@ public class Leitor {
 			    }
 			  return texto;
 			}
+	public static String getSenha(String source) {
+		try {
+			String temp = ler(source);
+			System.out.println(temp);
+			int i = temp.indexOf("SENHA:");
+			System.out.println(temp.substring(i,temp.indexOf(";", i)));
+			return temp.substring(i,temp.indexOf(";", i));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
+	}
+	
 	
 
 }
