@@ -26,6 +26,7 @@ public class Leitor {
 		try {
 			String temp = ler(source);
 			int i = temp.indexOf("SEN:");
+			System.out.println(i);
 			return temp.substring(i+4,temp.indexOf(";", i));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

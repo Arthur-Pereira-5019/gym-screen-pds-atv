@@ -27,10 +27,12 @@ public class Tela extends JFrame {
 
 	public static String loggedUser;
 	public static String loggedUserName;
+	public static int cadastrados;
 	private JPasswordField campoSenha;
 
 	
 	public static void main(String[] args) {
+		cadastrados();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -95,7 +97,7 @@ public class Tela extends JFrame {
 	}
 
 	public void validarCampos() {
-		if (campoMatricula.getText().length() > 3 && campoSenha.getText().length() > 3) {
+		if (campoMatricula.getText().length() > 0 && campoSenha.getText().length() > 3) {
 
 			if (ValidarUsuario.validar(campoMatricula.getText(), campoSenha.getText())) {
 
@@ -115,5 +117,9 @@ public class Tela extends JFrame {
 		} else {
 			JOptionPane.showMessageDialog(null, "OS CAMPOS DEVEM TER NO MÍNIMO 3 CARACTERES!", "ERRO!",JOptionPane.ERROR_MESSAGE);
 		}
+	}
+	
+	public static void cadastrados() {
+		cadastrados = new File("data/users").listFiles().length;
 	}
 }

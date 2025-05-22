@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,17 +19,20 @@ import javax.swing.JSlider;
 import javax.swing.JTextField;
 
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+import javax.swing.JPasswordField;
 
 public class NovoUsuario extends JFrame{
 	private JTextField campoNome;
 	private Dictionary<Integer, JLabel> sliderDic = new Hashtable<>();
-	private JTextField textField;
+	private JTextField campoEndereco;
 	private File novoUsuario;
+	private ButtonGroup genero = new ButtonGroup();
 	private FileWriter escritor;
 	private final JButton btnCriar = new JButton("Criar");
+	private JPasswordField passwordField;
 	public NovoUsuario() {
 		setResizable(false);
-		setBounds(100, 100, 450, 336);
+		setBounds(100, 100, 450, 379);
 		sliderDic.put(0, new JLabel("Novato"));
 		sliderDic.put(1, new JLabel("Iniciante"));
 		sliderDic.put(2, new JLabel("Rato"));
@@ -56,66 +60,75 @@ public class NovoUsuario extends JFrame{
 		lblNewLabel_2.setBounds(18, 90, 96, 27);
 		getContentPane().add(lblNewLabel_2);
 		
-		JSlider slider = new JSlider();
-		slider.setPaintLabels(true);
-		slider.setMajorTickSpacing(1);
-		slider.setValue(1);
-		slider.setMaximum(3);
-		slider.setLabelTable(sliderDic);
-		slider.setBounds(125, 90, 278, 31);
-		getContentPane().add(slider);
+		JSlider sliderExp = new JSlider();
+		sliderExp.setPaintLabels(true);
+		sliderExp.setMajorTickSpacing(1);
+		sliderExp.setValue(1);
+		sliderExp.setMaximum(3);
+		sliderExp.setLabelTable(sliderDic);
+		sliderExp.setBounds(125, 90, 278, 31);
+		getContentPane().add(sliderExp);
 		
 		JLabel lblNewLabel_3 = new JLabel("Endereço:");
 		lblNewLabel_3.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		lblNewLabel_3.setBounds(18, 144, 89, 29);
 		getContentPane().add(lblNewLabel_3);
 		
-		textField = new JTextField();
-		textField.setBounds(125, 140, 278, 31);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		campoEndereco = new JTextField();
+		campoEndereco.setBounds(125, 140, 278, 31);
+		getContentPane().add(campoEndereco);
+		campoEndereco.setColumns(10);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Masculino");
-		rdbtnNewRadioButton.setFont(new Font("SansSerif", Font.PLAIN, 13));
-		rdbtnNewRadioButton.setBounds(125, 207, 89, 21);
-		getContentPane().add(rdbtnNewRadioButton);
+		JRadioButton buttonM = new JRadioButton("Masculino");
+		buttonM.setSelected(true);
+		buttonM.setFont(new Font("SansSerif", Font.PLAIN, 13));
+		buttonM.setBounds(125, 207, 89, 21);
+		getContentPane().add(buttonM);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Feminino");
-		rdbtnNewRadioButton_1.setFont(new Font("SansSerif", Font.PLAIN, 13));
-		rdbtnNewRadioButton_1.setBounds(216, 207, 77, 21);
-		getContentPane().add(rdbtnNewRadioButton_1);
+		JRadioButton buttonF = new JRadioButton("Feminino");
+		buttonF.setFont(new Font("SansSerif", Font.PLAIN, 13));
+		buttonF.setBounds(216, 207, 89, 21);
+		getContentPane().add(buttonF);
 		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Não Binárie");
-		rdbtnNewRadioButton_2.setFont(new Font("SansSerif", Font.PLAIN, 13));
-		rdbtnNewRadioButton_2.setBounds(301, 207, 103, 21);
-		getContentPane().add(rdbtnNewRadioButton_2);
+		JRadioButton buttonNB = new JRadioButton("Não Binárie");
+		buttonNB.setFont(new Font("SansSerif", Font.PLAIN, 13));
+		buttonNB.setBounds(307, 207, 103, 21);
+		getContentPane().add(buttonNB);
 		
 		JLabel lblNewLabel_4 = new JLabel("Gênero:");
 		lblNewLabel_4.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		lblNewLabel_4.setBounds(18, 207, 82, 18);
 		getContentPane().add(lblNewLabel_4);
+		genero.add(buttonNB);
+		genero.add(buttonM);
+		genero.add(buttonF);
+		genero.setSelected(null, true);
 		btnCriar.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
-				
+				char genero = 'M';
+				if(buttonNB.isSelected()) {
+					genero = 'N';
+				}else if(buttonF.isSelected()) {
+					genero = 'F';
+				}
+				UsuarioController.criarUsuario(campoNome.getText(), sliderExp.getValue(), campoEndereco.getText(), genero, passwordField.getText());
 			}
 		});
-		btnCriar.setBounds(170, 253, 110, 36);
+		btnCriar.setBounds(163, 297, 110, 36);
 		getContentPane().add(btnCriar);
 		btnCriar.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel, lblNewLabel_1, campoNome, lblNewLabel_2, slider, lblNewLabel_3, textField, rdbtnNewRadioButton, rdbtnNewRadioButton_1, rdbtnNewRadioButton_2, lblNewLabel_4, btnCriar}));
+		
+		JLabel labelSenha = new JLabel("Senha:");
+		labelSenha.setFont(new Font("SansSerif", Font.PLAIN, 16));
+		labelSenha.setBounds(18, 254, 67, 21);
+		getContentPane().add(labelSenha);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(125, 250, 278, 27);
+		getContentPane().add(passwordField);
+		getContentPane().setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNewLabel, lblNewLabel_1, campoNome, lblNewLabel_2, sliderExp, lblNewLabel_3, campoEndereco, buttonM, buttonF, buttonNB, lblNewLabel_4, btnCriar, labelSenha, passwordField}));
 	}
 	
-	public void criarUsuario(String nome, int exp, String endereco, char G, String senha) {
-	novoUsuario = new File("data/users/1.txt");
-	
-	try {
-		novoUsuario.createNewFile();
-		escritor = new FileWriter("data/users/1.txt");
-		escritor.write("NOM:"+nome+"\nSEN:"+"E");
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	}
 	
 }
