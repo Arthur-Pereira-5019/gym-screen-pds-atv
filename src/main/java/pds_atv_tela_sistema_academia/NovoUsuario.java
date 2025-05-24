@@ -112,7 +112,7 @@ public class NovoUsuario extends JFrame{
 				}else if(buttonF.isSelected()) {
 					genero = 'F';
 				}
-				UsuarioController.criarUsuario(campoNome.getText(), sliderExp.getValue(), campoEndereco.getText(), genero, passwordField.getText());
+				UsuarioController.usuario(campoNome.getText(), sliderExp.getValue(), campoEndereco.getText(), genero, passwordField.getText(),'C');
 			}
 		});
 		btnCriar.setBounds(163, 297, 110, 36);

@@ -24,9 +24,8 @@ public class Leitor {
 	
 	public static String getSenha(String source) {
 		try {
-			String temp = ler(source);
+			String temp = lerUsuario(source);
 			int i = temp.indexOf("SEN:");
-			System.out.println(i);
 			return temp.substring(i+4,temp.indexOf(";", i));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -36,13 +35,50 @@ public class Leitor {
 	
 	public static String getNome(String source) {
 		try {
-			String temp = ler(source);
+			String temp = lerUsuario(source);
 			int i = temp.indexOf("NOM:");
 			return temp.substring(i+4,temp.indexOf(";", i));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 		}
 		return "";
+	}
+	
+	public static int getExp(String source) {
+		try {
+			String temp = lerUsuario(source);
+			int i = temp.indexOf("EXP:");
+			return Integer.parseInt(temp.substring(i+4,temp.indexOf(";", i)));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		}
+		return 1;
+	}
+	
+	public static String getEnd(String source) {
+		try {
+			String temp = lerUsuario(source);
+			int i = temp.indexOf("END:");
+			return temp.substring(i+4,temp.indexOf(";", i));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		}
+		return "";
+	}
+	
+	public static char getGenero(String source) {
+		try {
+			String temp = lerUsuario(source);
+			int i = temp.indexOf("END:");
+			return temp.substring(i+4,temp.indexOf(";", i)).charAt(0);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		}
+		return 'M';
+	}
+	
+	public static String lerUsuario(String source) throws IOException {
+		return ler("users/"+source+".txt");
 	}
 	
 	

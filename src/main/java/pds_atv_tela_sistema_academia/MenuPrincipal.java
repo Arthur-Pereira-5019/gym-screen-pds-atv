@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JLabel;
 
 public class MenuPrincipal extends JFrame {
 
@@ -25,8 +28,9 @@ public class MenuPrincipal extends JFrame {
 	private MenuSobre menuSobre;
 
 	public MenuPrincipal() {
+		
 		setTitle("Sistema Academia");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -63,6 +67,11 @@ public class MenuPrincipal extends JFrame {
 		menuBar.add(mnNewMenu_2);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Alterar Dados");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				abrirNovo(3);
+			}
+		});
 		mnNewMenu_2.add(mntmNewMenuItem_4);
 		
 		JMenu mnNewMenu_3 = new JMenu("Institucional");
@@ -72,7 +81,7 @@ public class MenuPrincipal extends JFrame {
 		JMenuItem botaoSobre = new JMenuItem("Sobre");
 		botaoSobre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new MenuSobre().setVisible(true);
+				abrirNovo(2);
 			}
 		});
 		mnNewMenu_3.add(botaoSobre);
@@ -84,7 +93,7 @@ public class MenuPrincipal extends JFrame {
 		contatoButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new MenuContato().setVisible(true);
+				abrirNovo(1);
 			}
 		});
 		contatoButton.setFont(new Font("SansSerif", Font.PLAIN, 12));
@@ -95,5 +104,32 @@ public class MenuPrincipal extends JFrame {
 		textArea.setEditable(false);
 		textArea.setBounds(10, 130, 414, 80);
 		contentPane.add(textArea);
+		
+		JLabel bemVindo = new JLabel("");
+		bemVindo.setBounds(10, 231, 414, 22);
+		contentPane.add(bemVindo);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosed(WindowEvent arg0) {
+				dispose();
+				Tela.mostrar();
+			}
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				bemVindo.setText("Bem vindo ao sistema "+Tela.loggedUserName);
+			}
+		});
+	}
+	
+	private void abrirNovo(int a) {
+		this.setVisible(false);
+		if(a == 1) {
+			new MenuContato().setVisible(true);
+		}else if(a == 2) {
+			new MenuSobre().setVisible(true);
+		}else if(a == 3) {
+			new AtualizarUsuario().setVisible(true);
+		}
 	}
 }

@@ -29,6 +29,7 @@ public class Tela extends JFrame {
 	public static String loggedUserName;
 	public static int cadastrados;
 	private JPasswordField campoSenha;
+	private static Tela frame;
 
 	
 	public static void main(String[] args) {
@@ -36,7 +37,7 @@ public class Tela extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Tela frame = new Tela();
+					frame = new Tela();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -106,8 +107,13 @@ public class Tela extends JFrame {
 				} else {
 					new MenuPrincipal().setVisible(true);
 				}
+				
 				loggedUser = campoMatricula.getText();
-				loggedUserName = Leitor.getNome("users/" + campoMatricula.getText());
+				loggedUserName = Leitor.getNome(campoMatricula.getText());
+				
+				campoSenha.setText("");
+				campoMatricula.setText("");
+				setVisible(false);
 			} else {
 				JOptionPane.showMessageDialog(null, "SENHA OU MATRÍCULA INCORRETAS!", "ERRO!",
 						JOptionPane.ERROR_MESSAGE);
@@ -122,4 +128,9 @@ public class Tela extends JFrame {
 	public static void cadastrados() {
 		cadastrados = new File("data/users").listFiles().length;
 	}
+	
+	public static void mostrar() {
+		frame.setVisible(true);
+	}
+	
 }
