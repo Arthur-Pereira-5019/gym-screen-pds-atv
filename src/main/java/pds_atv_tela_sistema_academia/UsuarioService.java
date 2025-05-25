@@ -8,7 +8,7 @@ import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-public class UsuarioController {
+public class UsuarioService {
 	
 	
 	public static void criarUsuario(String nome, int exp, String endereco, char genero, String senha) {

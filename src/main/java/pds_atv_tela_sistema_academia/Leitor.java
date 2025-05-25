@@ -10,17 +10,26 @@ public class Leitor {
 
 	
 	public static String ler(String source) throws IOException {
-			    String texto = "";
-			    InputStream inputStream = new FileInputStream("data/"+source);
-			    
-			    try (BufferedReader br= new BufferedReader(new InputStreamReader(inputStream))) {
-			        String linha;
-			        while ((linha = br.readLine()) != null) {
-			            texto = texto + linha + "\n";
-			        }
-			    }
-			  return texto;
+			  return ler(source, false);
 			}
+	
+	public static String ler(String source, boolean fullPath) throws IOException {
+	    String texto = "";
+	    InputStream inputStream;
+	    if(fullPath == true) {
+	    	inputStream = new FileInputStream(source);
+	    }else {
+	    	inputStream = new FileInputStream("data/"+source);
+	    }
+	    
+	    try (BufferedReader br= new BufferedReader(new InputStreamReader(inputStream))) {
+	        String linha;
+	        while ((linha = br.readLine()) != null) {
+	            texto = texto + linha + "\n";
+	        }
+	    }
+	  return texto;
+	}
 	
 	public static String getSenha(String source) {
 		try {

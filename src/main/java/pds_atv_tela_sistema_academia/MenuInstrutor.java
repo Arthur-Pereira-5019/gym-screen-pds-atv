@@ -21,7 +21,7 @@ import javax.swing.JLabel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class MenuInstrutor extends JFrame {
+public class MenuInstrutor extends Telas {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -59,7 +59,7 @@ public class MenuInstrutor extends JFrame {
 		JMenuItem buttonCUsuario = new JMenuItem("Cadastrar Usuario");
 		buttonCUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new NovoUsuario().setVisible(true);
+				abrirNovo(5);
 			}
 			
 		});
@@ -72,10 +72,12 @@ public class MenuInstrutor extends JFrame {
 		buttonBoletos.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		menuBar.add(buttonBoletos);
 		
-		JMenuItem consultarInformes = new JMenuItem("Consultar Informes");
-		buttonBoletos.add(consultarInformes);
-		
-		JMenuItem novosInformes = new JMenuItem("Novos Informes");
+		JMenuItem novosInformes = new JMenuItem("Novo Informe");
+		novosInformes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				abrirNovo(4);
+			}
+		});
 		buttonBoletos.add(novosInformes);
 		
 		JTextArea textArea = new JTextArea();
@@ -84,20 +86,11 @@ public class MenuInstrutor extends JFrame {
 		textArea.setBounds(10, 130, 414, 80);
 		contentPane.add(textArea);
 		
-		JLabel userName = new JLabel("");
+		JLabel userName = new JLabel("Bem vindo!");
 		userName.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		userName.setBounds(10, 228, 121, 22);
 		contentPane.add(userName);
-		
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowOpened(WindowEvent e) {
-				updateFields(userName);
-			}
-		});
 	}
 	
-	private void updateFields(JLabel userName) {
-		userName.setText(Tela.loggedUserName);
-	}
+	
 }

@@ -115,7 +115,7 @@ public class AtualizarUsuario extends JFrame{
 				}else if(buttonF.isSelected()) {
 					genero = 'F';
 				}
-				UsuarioController.usuario(campoNome.getText(), sliderExp.getValue(), campoEndereco.getText(), genero, campoSenha.getText(),'U');
+				UsuarioService.usuario(campoNome.getText(), sliderExp.getValue(), campoEndereco.getText(), genero, campoSenha.getText(),'U');
 			}
 		});
 		btnCriar.setBounds(163, 297, 110, 36);

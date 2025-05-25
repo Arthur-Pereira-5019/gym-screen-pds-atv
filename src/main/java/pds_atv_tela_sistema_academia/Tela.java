@@ -17,7 +17,7 @@ import javax.swing.JPasswordField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class Tela extends JFrame {
+public class Tela extends Telas {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -30,6 +30,8 @@ public class Tela extends JFrame {
 	public static int cadastrados;
 	private JPasswordField campoSenha;
 	private static Tela frame;
+	
+	public static InformeService informeService = new InformeService();
 
 	
 	public static void main(String[] args) {
