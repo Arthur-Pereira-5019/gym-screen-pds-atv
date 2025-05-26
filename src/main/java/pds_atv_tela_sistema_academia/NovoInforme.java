@@ -14,10 +14,10 @@ import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 import javax.swing.JComboBox;
 
-public class NovoInforme extends JFrame {
+public class NovoInforme extends TelasSecundariasInstrutor {
 	public NovoInforme() {
 		setBounds(100, 100, 570, 379);
-		Integer[] prioridades = {1, 2 ,3};
+		String[] prioridades = {"1", "2" ,"3"};
 		getContentPane().setLayout(null);
 		
 		JTextArea txtInforme = new JTextArea();
@@ -44,14 +44,14 @@ public class NovoInforme extends JFrame {
 		lblNewLabel_2.setBounds(48, 212, 106, 19);
 		getContentPane().add(lblNewLabel_2);
 		
-		JComboBox<Integer> comboBox = new JComboBox<Integer>(prioridades);
+		JComboBox<String> comboBox = new JComboBox<String>(prioridades);
 		comboBox.setBounds(155, 213, 298, 22);
 		getContentPane().add(comboBox);
 		
 		JButton btnNewButton = new JButton("Cadastrar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Tela.informeService.cadastrarInforme(comboBox.getSelectedIndex(), txtInforme.getText());
+				TelaLogin.informeService.cadastrarInforme(Integer.parseInt(comboBox.getSelectedItem().toString()), txtInforme.getText());
 			}
 		});
 		btnNewButton.setFont(new Font("SansSerif", Font.PLAIN, 12));

@@ -21,13 +21,15 @@ import javax.swing.JLabel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class MenuInstrutor extends Telas {
+public class MenuInstrutor extends TelasPrincipais {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private MenuSobre menuSobre;
+	static JTextArea textArea = new JTextArea();
 
 	public MenuInstrutor() {
+		super(textArea);
 		
 		setTitle("Sistema Academia (Modo Instrutor)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,7 +82,7 @@ public class MenuInstrutor extends Telas {
 		});
 		buttonBoletos.add(novosInformes);
 		
-		JTextArea textArea = new JTextArea();
+		
 		textArea.setEnabled(false);
 		textArea.setEditable(false);
 		textArea.setBounds(10, 130, 414, 80);

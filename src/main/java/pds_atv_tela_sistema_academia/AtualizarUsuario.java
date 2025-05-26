@@ -136,7 +136,7 @@ public class AtualizarUsuario extends JFrame{
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				String matricula = Tela.loggedUser;
+				String matricula = TelaLogin.loggedUser;
 				sliderExp.setValue(Leitor.getExp(matricula));
 				campoEndereco.setText(Leitor.getEnd(matricula));
 				campoNome.setText((Leitor.getNome(matricula)));

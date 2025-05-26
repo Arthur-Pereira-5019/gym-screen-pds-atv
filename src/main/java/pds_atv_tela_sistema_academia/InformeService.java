@@ -38,9 +38,6 @@ public class InformeService {
 				}
 			}
 			
-				System.out.println(prioridade);
-				System.out.println(texto);
-				System.out.println(informes.get(prioridade).getPath());
 				escritor = new FileWriter(informes.get(prioridade));
 				escritor.write(texto);
 				JOptionPane.showMessageDialog(null, "Informe cadastrado com sucesso!", "Sucesso!", 1);

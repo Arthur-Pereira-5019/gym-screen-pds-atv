@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class Tela extends Telas {
+public class TelaLogin extends Telas {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -29,7 +29,7 @@ public class Tela extends Telas {
 	public static String loggedUserName;
 	public static int cadastrados;
 	private JPasswordField campoSenha;
-	private static Tela frame;
+	private static TelaLogin frame;
 	
 	public static InformeService informeService = new InformeService();
 
@@ -39,7 +39,7 @@ public class Tela extends Telas {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new Tela();
+					frame = new TelaLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +49,7 @@ public class Tela extends Telas {
 	}
 
 	
-	public Tela() {
+	public TelaLogin() {
 		getContentPane().setLayout(null);
 		setBounds(100, 100, 450, 300);
 		JLabel lblNewLabel = new JLabel("Entre com seus dados...");

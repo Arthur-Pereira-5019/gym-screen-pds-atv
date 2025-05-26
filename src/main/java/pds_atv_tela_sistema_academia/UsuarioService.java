@@ -12,7 +12,7 @@ public class UsuarioService {
 	
 	
 	public static void criarUsuario(String nome, int exp, String endereco, char genero, String senha) {
-		int matricula = Tela.cadastrados;
+		int matricula = TelaLogin.cadastrados;
 		if(nome.length() > 4 && endereco.length() > 4 && senha.length() > 4) {
 			File novoUsuario = new File("data/users/"+matricula+".txt");
 			FileWriter escritor;
@@ -34,9 +34,9 @@ public class UsuarioService {
 	}
 		
 		public static void usuario(String nome, int exp, String endereco, char genero, String senha, char mode) {
-			int matricula = Tela.cadastrados;
+			int matricula = TelaLogin.cadastrados;
 			if(mode == 'U') {
-				matricula = Integer.parseInt(Tela.loggedUser);
+				matricula = Integer.parseInt(TelaLogin.loggedUser);
 			}
 			
 			if(nome.length() > 4 && endereco.length() > 4 && senha.length() > 4) {

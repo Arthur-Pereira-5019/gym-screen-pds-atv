@@ -113,13 +113,8 @@ public class MenuUsuario extends TelasPrincipais {
 		
 		addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowClosed(WindowEvent arg0) {
-				dispose();
-				Tela.mostrar();
-			}
-			@Override
 			public void windowOpened(WindowEvent arg0) {
-				bemVindo.setText("Bem vindo ao sistema "+Tela.loggedUserName);
+				bemVindo.setText("Bem vindo ao sistema "+TelaLogin.loggedUserName);
 			}
 		});
 		
