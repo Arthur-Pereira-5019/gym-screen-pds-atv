@@ -4,18 +4,18 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.JPasswordField;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import javax.swing.JTextField;
 
 public class Tela extends Telas {
 
@@ -107,7 +107,7 @@ public class Tela extends Telas {
 				if (campoMatricula.getText().equals("root")) {
 					new MenuInstrutor().setVisible(true);
 				} else {
-					new MenuPrincipal().setVisible(true);
+					new MenuUsuario().setVisible(true);
 				}
 				
 				loggedUser = campoMatricula.getText();
@@ -134,5 +134,9 @@ public class Tela extends Telas {
 	public static void mostrar() {
 		frame.setVisible(true);
 	}
+	
+	
+	
+	
 	
 }

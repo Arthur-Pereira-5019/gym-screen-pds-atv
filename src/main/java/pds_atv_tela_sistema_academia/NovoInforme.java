@@ -12,25 +12,18 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
+import javax.swing.JComboBox;
 
 public class NovoInforme extends JFrame {
 	public NovoInforme() {
-		DefaultListModel<Integer> prioridades = new DefaultListModel<>();
-		prioridades.addElement(1);
-		prioridades.addElement(2);
-		prioridades.addElement(3);
-		
+		setBounds(100, 100, 570, 379);
+		Integer[] prioridades = {1, 2 ,3};
 		getContentPane().setLayout(null);
 		
 		JTextArea txtInforme = new JTextArea();
 		txtInforme.setText("Informe...");
 		txtInforme.setBounds(48, 50, 470, 149);
 		getContentPane().add(txtInforme);
-		
-		JList listPrioridade = new JList(prioridades);
-		listPrioridade.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listPrioridade.setBounds(164, 209, 272, 20);
-		getContentPane().add(listPrioridade);
 		
 		
 		JLabel lblNewLabel = new JLabel("Novo Informe");
@@ -44,19 +37,25 @@ public class NovoInforme extends JFrame {
 		lblNewLabel_1.setBounds(10, 308, 551, 13);
 		getContentPane().add(lblNewLabel_1);
 		
-		JButton btnNewButton = new JButton("Cadastrar");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Tela.informeService.cadastrarInforme(2, txtInforme.getText());
-			}
-		});
-		btnNewButton.setFont(new Font("SansSerif", Font.PLAIN, 12));
-		btnNewButton.setBounds(235, 262, 85, 21);
-		getContentPane().add(btnNewButton);
+		
 		
 		JLabel lblNewLabel_2 = new JLabel("Prioridade:");
 		lblNewLabel_2.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		lblNewLabel_2.setBounds(48, 212, 106, 19);
 		getContentPane().add(lblNewLabel_2);
+		
+		JComboBox<Integer> comboBox = new JComboBox<Integer>(prioridades);
+		comboBox.setBounds(155, 213, 298, 22);
+		getContentPane().add(comboBox);
+		
+		JButton btnNewButton = new JButton("Cadastrar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Tela.informeService.cadastrarInforme(comboBox.getSelectedIndex(), txtInforme.getText());
+			}
+		});
+		btnNewButton.setFont(new Font("SansSerif", Font.PLAIN, 12));
+		btnNewButton.setBounds(235, 262, 85, 21);
+		getContentPane().add(btnNewButton);
 	}
 }

@@ -21,13 +21,16 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JLabel;
 
-public class MenuPrincipal extends JFrame {
+public class MenuUsuario extends TelasPrincipais {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private MenuSobre menuSobre;
+	private static JTextArea campoInformes = new JTextArea();;
 
-	public MenuPrincipal() {
+	public MenuUsuario() {
+		
+		super(campoInformes);
 		
 		setTitle("Sistema Academia");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -99,11 +102,10 @@ public class MenuPrincipal extends JFrame {
 		contatoButton.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		menuBar.add(contatoButton);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setEnabled(false);
-		textArea.setEditable(false);
-		textArea.setBounds(10, 130, 414, 80);
-		contentPane.add(textArea);
+		campoInformes.setEnabled(false);
+		campoInformes.setEditable(false);
+		campoInformes.setBounds(10, 130, 414, 80);
+		contentPane.add(campoInformes);
 		
 		JLabel bemVindo = new JLabel("");
 		bemVindo.setBounds(10, 231, 414, 22);
@@ -120,16 +122,8 @@ public class MenuPrincipal extends JFrame {
 				bemVindo.setText("Bem vindo ao sistema "+Tela.loggedUserName);
 			}
 		});
+		
+		
 	}
 	
-	private void abrirNovo(int a) {
-		this.setVisible(false);
-		if(a == 1) {
-			new MenuContato().setVisible(true);
-		}else if(a == 2) {
-			new MenuSobre().setVisible(true);
-		}else if(a == 3) {
-			new AtualizarUsuario().setVisible(true);
-		}
-	}
 }

@@ -1,5 +1,6 @@
 package pds_atv_tela_sistema_academia;
 
+import java.awt.HeadlessException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,7 +12,7 @@ import javax.swing.JOptionPane;
 public class InformeService {
 
 	File pastaInformes = new File("data/informes");
-	Dictionary<Integer, File> informes = new Hashtable<>();
+	static Dictionary<Integer, File> informes = new Hashtable<>();
 
 	FileWriter escritor;
 
@@ -23,28 +24,40 @@ public class InformeService {
 	}
 
 	public void cadastrarInforme(int prioridade, String texto) {
-		if (!existemInformes()) {
-			mensagemDeErro();
-			return;
-		}
+		
+		try {
+			if (!existemInformes()) {
+				mensagemDeErro();
+				return;
+			}
 
-		if (prioridade > 1) {
-			for (int i = 1; i < prioridade; i++) {
-				try {
-					escritor = new FileWriter(informes.get(i));
-					escritor.write(Leitor.ler(informes.get(i + 1).getPath(), true));
-				} catch (IOException e) {
-					mensagemDeErro();
+			if (prioridade > 1) {
+				for (int i = 1; i < prioridade; i++) {
+						escritor = new FileWriter(informes.get(i));
+						escritor.write(Leitor.ler(informes.get(i + 1).getPath(), true));
 				}
 			}
-		}
-		try {
-			escritor = new FileWriter(informes.get(prioridade));
-			escritor.write(texto);
+			
+				System.out.println(prioridade);
+				System.out.println(texto);
+				System.out.println(informes.get(prioridade).getPath());
+				escritor = new FileWriter(informes.get(prioridade));
+				escritor.write(texto);
+				JOptionPane.showMessageDialog(null, "Informe cadastrado com sucesso!", "Sucesso!", 1);
+
+			
+				
+		} catch (HeadlessException e) {
+			mensagemDeErro();
 		} catch (IOException e) {
 			mensagemDeErro();
+		} finally {
+			try {
+				escritor.close();
+			} catch (IOException e) {
+				mensagemDeErro();
+			}
 		}
-
 	}
 
 	private boolean existemInformes() {
