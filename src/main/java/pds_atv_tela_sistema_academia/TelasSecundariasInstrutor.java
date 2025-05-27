@@ -8,9 +8,9 @@ public class TelasSecundariasInstrutor extends Telas {
 	public TelasSecundariasInstrutor() {
 		addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowClosed(WindowEvent arg0) {
+			public void windowClosing(WindowEvent arg0) {
 				dispose();
-				MenuInstrutor.mostrar();
+				new MenuInstrutor().setVisible(true);
 			}
 		});
 	}

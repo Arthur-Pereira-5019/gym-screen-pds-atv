@@ -63,6 +63,13 @@ public class UsuarioService {
 				
 			}
 		}
+		
+		public static boolean validar(String validar, String senha) {
+			if(senha.equals(Leitor.getSenha(validar))) {
+				return true;
+			}
+			return false;
+		}
 	}
 	
 

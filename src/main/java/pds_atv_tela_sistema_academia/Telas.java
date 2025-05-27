@@ -5,7 +5,7 @@ import javax.swing.JFrame;
 public abstract class Telas extends JFrame {
 	
 	public void abrirNovo(int a) {
-		this.setVisible(false);
+		this.dispose();
 		switch (a) {
 		case 1:
 			new MenuContato().setVisible(true);

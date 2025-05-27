@@ -94,5 +94,9 @@ public class MenuInstrutor extends TelasPrincipais {
 		contentPane.add(userName);
 	}
 	
+	public void mostrar() {
+		this.setVisible(true);
+	}
+	
 	
 }

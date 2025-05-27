@@ -117,8 +117,11 @@ public class MenuUsuario extends TelasPrincipais {
 				bemVindo.setText("Bem vindo ao sistema "+TelaLogin.loggedUserName);
 			}
 		});
-		
-		
+			
+	}
+	
+	public void mostrar() {
+		this.setVisible(true);
 	}
 	
 }

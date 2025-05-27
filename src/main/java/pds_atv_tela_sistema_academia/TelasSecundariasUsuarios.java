@@ -8,11 +8,14 @@ public class TelasSecundariasUsuarios extends Telas {
 	public TelasSecundariasUsuarios() {
 		addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowClosed(WindowEvent arg0) {
+			public void windowClosing(WindowEvent arg0) {
 				dispose();
-				MenuUsuario.mostrar();
+				new MenuUsuario().mostrar();
+
 			}
 		});
 	}
+	
+	
 
 }

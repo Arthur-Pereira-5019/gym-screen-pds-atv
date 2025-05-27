@@ -14,7 +14,6 @@ public class InformeService {
 	File pastaInformes = new File("data/informes");
 	static Dictionary<Integer, File> informes = new Hashtable<>();
 
-	FileWriter escritor;
 
 	InformeService() {
 		for (int i = 1; i <= 3; i++) {
@@ -33,13 +32,10 @@ public class InformeService {
 
 			if (prioridade > 1) {
 				for (int i = 1; i < prioridade; i++) {
-						escritor = new FileWriter(informes.get(i));
-						escritor.write(Leitor.ler(informes.get(i + 1).getPath(), true));
+						Escritor.escreverComFile(informes.get(i), Leitor.ler(informes.get(i + 1).getPath(), true));
 				}
 			}
-			
-				escritor = new FileWriter(informes.get(prioridade));
-				escritor.write(texto);
+				Escritor.escreverComFile(informes.get(prioridade), texto);
 				JOptionPane.showMessageDialog(null, "Informe cadastrado com sucesso!", "Sucesso!", 1);
 
 			
@@ -48,12 +44,6 @@ public class InformeService {
 			mensagemDeErro();
 		} catch (IOException e) {
 			mensagemDeErro();
-		} finally {
-			try {
-				escritor.close();
-			} catch (IOException e) {
-				mensagemDeErro();
-			}
 		}
 	}
 

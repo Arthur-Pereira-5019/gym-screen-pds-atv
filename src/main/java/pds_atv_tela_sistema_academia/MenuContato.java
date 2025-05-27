@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-public class MenuContato extends JFrame {
+public class MenuContato extends TelasSecundariasUsuarios {
 	public MenuContato() {
 		setBounds(100, 100, 450, 300);
 		setTitle("Contato");

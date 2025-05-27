@@ -23,7 +23,7 @@ import javax.swing.JPasswordField;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class AtualizarUsuario extends JFrame{
+public class AtualizarUsuario extends TelasSecundariasUsuarios{
 	private JTextField campoNome;
 	private Dictionary<Integer, JLabel> sliderDic = new Hashtable<>();
 	private JTextField campoEndereco;

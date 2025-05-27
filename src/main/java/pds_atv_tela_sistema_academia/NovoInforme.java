@@ -37,8 +37,6 @@ public class NovoInforme extends TelasSecundariasInstrutor {
 		lblNewLabel_1.setBounds(10, 308, 551, 13);
 		getContentPane().add(lblNewLabel_1);
 		
-		
-		
 		JLabel lblNewLabel_2 = new JLabel("Prioridade:");
 		lblNewLabel_2.setFont(new Font("SansSerif", Font.PLAIN, 16));
 		lblNewLabel_2.setBounds(48, 212, 106, 19);
@@ -58,4 +56,5 @@ public class NovoInforme extends TelasSecundariasInstrutor {
 		btnNewButton.setBounds(235, 262, 85, 21);
 		getContentPane().add(btnNewButton);
 	}
+
 }

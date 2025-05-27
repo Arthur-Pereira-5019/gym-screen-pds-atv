@@ -102,7 +102,7 @@ public class TelaLogin extends Telas {
 	public void validarCampos() {
 		if (campoMatricula.getText().length() > 0 && campoSenha.getText().length() > 3) {
 
-			if (ValidarUsuario.validar(campoMatricula.getText(), campoSenha.getText())) {
+			if (UsuarioService.validar(campoMatricula.getText(), campoSenha.getText())) {
 
 				if (campoMatricula.getText().equals("root")) {
 					new MenuInstrutor().setVisible(true);
@@ -129,10 +129,6 @@ public class TelaLogin extends Telas {
 	
 	public static void cadastrados() {
 		cadastrados = new File("data/users").listFiles().length;
-	}
-	
-	public static void mostrar() {
-		frame.setVisible(true);
 	}
 	
 	

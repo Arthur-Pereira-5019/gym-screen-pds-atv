@@ -7,7 +7,7 @@ import java.util.TimerTask;
 
 import javax.swing.JTextArea;
 
-public class TelasPrincipais extends TelaLogin{
+public class TelasPrincipais extends Telas{
 	
 	TimerTask atualizador;
 	Timer timer = new Timer();
@@ -20,7 +20,6 @@ public class TelasPrincipais extends TelaLogin{
 			@Override
 			public void windowClosed(WindowEvent arg0) {
 				dispose();
-				TelaLogin.mostrar();
 			}
 		});
 	}
