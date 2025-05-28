@@ -22,7 +22,6 @@ public class AtualizadorDeTela extends TimerTask {
 		}else {
 			i = 1;
 		}
-		System.out.println(i);
 		try {
 			componente.setText(Leitor.ler(InformeService.informes.get(i).getPath(),true));
 		} catch (IOException e) {

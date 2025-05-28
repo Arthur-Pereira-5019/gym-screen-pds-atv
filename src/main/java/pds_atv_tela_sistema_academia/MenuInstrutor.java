@@ -49,6 +49,11 @@ public class MenuInstrutor extends TelasPrincipais {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem criarTreinos = new JMenuItem("Criar Treinos");
+		criarTreinos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				abrirNovo(6);
+			}
+		});
 		mnNewMenu.add(criarTreinos);
 		
 		JMenuItem atribuirTreinos = new JMenuItem("Atribuir Treinos");
