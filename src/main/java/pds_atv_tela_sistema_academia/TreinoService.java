@@ -19,5 +19,30 @@ public class TreinoService {
 			JOptionPane.showMessageDialog(null, "Erro ao criar treino","Erro!",3);
 		}
 	}
+	
+	public static void criarFichaTreino() {
+		File pastaFichas = new File("data/fichas");
+		File novaFicha = new File(pastaFichas+TelaLogin.loggedUser);
+		try {
+			novaFicha.createNewFile();
+			String textoFicha = "A:[_];B:[_];C:[_];D:[_];E:[_]";
+			Escritor.escreverComFile(novaFicha, textoFicha);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void adicionarTreino(char tipoTreino, String ficha) {
+		try {
+			String novoTextoFicha = Leitor.ler(ficha);
+			tipoTreino++;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+				
+	}
 
 }

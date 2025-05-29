@@ -25,7 +25,9 @@ public abstract class Telas extends JFrame {
 		case 6:
 			new MenuCriarTreinos().setVisible(true);
 			break;
-			
+		case 7:
+			new TelaAtribuicaoDeTreinos().setVisible(true);
+			break;
 		default:
 			break;
 		}
