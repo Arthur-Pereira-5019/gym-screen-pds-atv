@@ -1,8 +1,21 @@
 package pds_atv_tela_sistema_academia;
 
 import javax.swing.JFrame;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public abstract class Telas extends JFrame {
+	public Telas() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				if(getTitle().isEmpty()) {
+					setTitle("Bora Bill Academia");
+				}
+				
+			}
+		});
+	}
 	
 	public void abrirNovo(int a) {
 		this.dispose();

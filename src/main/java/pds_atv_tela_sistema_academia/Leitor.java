@@ -75,9 +75,31 @@ public class Leitor {
 		return "";
 	}
 	
+	public static String getNomeTreino(String source) {
+		try {
+			String temp = lerTreino(source);
+			int i = temp.indexOf("NOM:");
+			return temp.substring(i+4,temp.indexOf(";", i));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		}
+		return "";
+	}
+	
+	public static String getGrupoTreino(String source) {
+		try {
+			String temp = lerTreino(source);
+			int i = temp.indexOf("GRU:");
+			return temp.substring(i+4,temp.indexOf(";", i));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+		}
+		return "";
+	}
+	
 	public static char getGenero(String source) {
 		try {
-			String temp = lerUsuario(source);
+			String temp = lerTreino(source);
 			int i = temp.indexOf("END:");
 			return temp.substring(i+4,temp.indexOf(";", i)).charAt(0);
 		} catch (IOException e) {
@@ -88,6 +110,10 @@ public class Leitor {
 	
 	public static String lerUsuario(String source) throws IOException {
 		return ler("users/"+source+".txt");
+	}
+	
+	public static String lerTreino(String source) throws IOException {
+		return ler(source,true);
 	}
 	
 	

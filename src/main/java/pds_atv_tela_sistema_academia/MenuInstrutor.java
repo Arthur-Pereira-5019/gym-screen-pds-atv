@@ -25,7 +25,6 @@ public class MenuInstrutor extends TelasPrincipais {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private MenuSobre menuSobre;
 	static JTextArea textArea = new JTextArea();
 
 	public MenuInstrutor() {

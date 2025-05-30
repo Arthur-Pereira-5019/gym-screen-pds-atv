@@ -3,6 +3,8 @@ package pds_atv_tela_sistema_academia;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JOptionPane;
 
@@ -67,6 +69,18 @@ public class UsuarioService {
 				return true;
 			}
 			return false;
+		}
+		
+		public static File buscarUsuario(String nome) {
+			ArrayList<File> listaDeUsuarios = new ArrayList<File>();
+			listaDeUsuarios.addAll(Arrays.asList(new File("data/users").listFiles()));
+			for (File usuario : listaDeUsuarios) {
+				if(Leitor.getNome(usuario.getName().replace(".txt", "")).equals(nome)) {
+					return usuario;
+				}
+			}
+			JOptionPane.showMessageDialog(null, "Usuário não encontrado!", "Erro!", 3);
+			return null;
 		}
 		
 	}

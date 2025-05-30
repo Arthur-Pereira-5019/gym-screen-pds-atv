@@ -12,19 +12,9 @@ import javax.swing.JTextField;
 public class MenuCriarTreinos extends TelasSecundariasInstrutor {
 	private JTextField nomeField;
 	private JComboBox<String> grupoSelecao;
+	private TreinoService treino = new TreinoService();
 	public MenuCriarTreinos() {
-		
-		DefaultComboBoxModel<String> modelo = new DefaultComboBoxModel<String>();
-		modelo.addElement("Abdominal");
-		modelo.addElement("Biceps");
-		modelo.addElement("Triceps");
-		modelo.addElement("Coxa");
-		modelo.addElement("Antebraço");
-		modelo.addElement("Glúteos");
-		modelo.addElement("Panturrilha");
-		modelo.addElement("Peito");
-		modelo.addElement("Costas");
-		modelo.addElement("Cardio");
+		setSize(460, 320);
 		
 		getContentPane().setLayout(null);
 		
@@ -48,7 +38,7 @@ public class MenuCriarTreinos extends TelasSecundariasInstrutor {
 		getContentPane().add(nomeField);
 		nomeField.setColumns(10);
 		
-		grupoSelecao = new JComboBox<String>(modelo);
+		grupoSelecao = new JComboBox<String>(treino.modelo);
 		grupoSelecao.setBounds(135, 93, 278, 21);
 		getContentPane().add(grupoSelecao);
 		
@@ -64,7 +54,7 @@ public class MenuCriarTreinos extends TelasSecundariasInstrutor {
 	}
 	
 	public void atualizarTreino() {
-		TreinoService.criarTreino(nomeField.getText(), grupoSelecao.getSelectedItem().toString());
+		treino.criarTreino(nomeField.getText(), grupoSelecao.getSelectedItem().toString());
 	}
 	
 }
