@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.Color;
 
 public class MenuInstrutor extends TelasPrincipais {
 
@@ -31,7 +32,6 @@ public class MenuInstrutor extends TelasPrincipais {
 		super(textArea);
 		
 		setTitle("Sistema Academia (Modo Instrutor)");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -77,6 +77,7 @@ public class MenuInstrutor extends TelasPrincipais {
 		buttonUsuarios.add(buttonCUsuario);
 		
 		JMenuItem buttonBBoletos = new JMenuItem("Baixar Boletos");
+		buttonBBoletos.setForeground(new Color(255, 0, 0));
 		buttonUsuarios.add(buttonBBoletos);
 		
 		JMenu buttonBoletos = new JMenu("Informes");
@@ -90,6 +91,7 @@ public class MenuInstrutor extends TelasPrincipais {
 			}
 		});
 		buttonBoletos.add(novosInformes);
+		textArea.setLineWrap(true);
 		
 		
 		textArea.setEnabled(false);

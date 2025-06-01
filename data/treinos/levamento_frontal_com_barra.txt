@@ -1,0 +1,2 @@
+NOM:Levamento Frontal com Barra;
+GRU:Ombro;

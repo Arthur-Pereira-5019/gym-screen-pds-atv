@@ -1,0 +1,2 @@
+NOM:Prancha;
+GRU:Abdominal;

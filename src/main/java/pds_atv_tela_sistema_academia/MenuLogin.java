@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class TelaLogin extends Telas {
+public class MenuLogin extends Telas {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -25,11 +25,13 @@ public class TelaLogin extends Telas {
 	private JTextField campoMatricula;
 	private File listaDeArquivos;
 
-	public static String loggedUser;
-	public static String loggedUserName;
+	private static String loggedUser;
+	private static String loggedUserName;
 	public static int cadastrados;
 	private JPasswordField campoSenha;
-	private static TelaLogin frame;
+	public static MenuLogin frame;
+	
+	private UsuarioService usuario = new UsuarioService();
 	
 	public static InformeService informeService = new InformeService();
 
@@ -39,7 +41,7 @@ public class TelaLogin extends Telas {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new TelaLogin();
+					frame = new MenuLogin();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +51,7 @@ public class TelaLogin extends Telas {
 	}
 
 	
-	public TelaLogin() {
+	public MenuLogin() {
 		getContentPane().setLayout(null);
 		setBounds(100, 100, 450, 300);
 		JLabel lblNewLabel = new JLabel("Entre com seus dados...");
@@ -102,7 +104,7 @@ public class TelaLogin extends Telas {
 	public void validarCampos() {
 		if (campoMatricula.getText().length() > 0 && campoSenha.getText().length() > 3) {
 
-			if (UsuarioService.validar(campoMatricula.getText(), campoSenha.getText())) {
+			if (usuario.validar(campoMatricula.getText(), campoSenha.getText())) {
 
 				if (campoMatricula.getText().equals("root")) {
 					new MenuInstrutor().setVisible(true);
@@ -117,8 +119,7 @@ public class TelaLogin extends Telas {
 				campoMatricula.setText("");
 				setVisible(false);
 			} else {
-				JOptionPane.showMessageDialog(null, "SENHA OU MATRÍCULA INCORRETAS!", "ERRO!",
-						JOptionPane.ERROR_MESSAGE);
+				popups.mostrarErro("SENHA OU MATRÍCULA INCORRETAS!");
 				campoSenha.setText("");
 				campoSenha.requestFocus();
 			}
@@ -131,6 +132,21 @@ public class TelaLogin extends Telas {
 		cadastrados = new File("data/users").listFiles().length;
 	}
 	
+	public void mostrar() {
+		campoSenha.setText("");
+		campoMatricula.setText("");
+		loggedUser = "";
+		loggedUserName = "";
+		setVisible(true);
+	}
+	
+	public static String getLogged() {
+		return loggedUser;
+	}
+	
+	public static String getLoggedName() {
+		return loggedUserName;
+	}
 	
 	
 	

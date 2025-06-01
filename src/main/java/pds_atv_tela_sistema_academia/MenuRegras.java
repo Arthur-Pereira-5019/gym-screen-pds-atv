@@ -10,11 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-public class MenuSobre extends TelasSecundariasUsuarios {
-	public MenuSobre() {
+public class MenuRegras extends TelasSecundariasUsuarios {
+	public MenuRegras() {
 		setBounds(100, 100, 450, 300);
 
-		setTitle("Sobre");
+		setTitle("Regras");
 		
 		getContentPane().setLayout(null);
 		
@@ -24,7 +24,7 @@ public class MenuSobre extends TelasSecundariasUsuarios {
 		sobre.setBounds(10, 47, 416, 206);
 		getContentPane().add(sobre);
 		
-		JLabel lblNewLabel = new JLabel("Sobre Nós");
+		JLabel lblNewLabel = new JLabel("Regras");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 16));
 		lblNewLabel.setBounds(151, 10, 141, 27);
@@ -40,7 +40,7 @@ public class MenuSobre extends TelasSecundariasUsuarios {
 	
 	public void atualizarSobre(JTextArea componente) {
 		try {
-			componente.setText(Leitor.ler("sobre/sobre"));
+			componente.setText(Leitor.ler("sobre/regras"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

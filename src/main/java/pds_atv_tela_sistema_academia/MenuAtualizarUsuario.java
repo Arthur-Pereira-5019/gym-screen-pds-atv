@@ -23,7 +23,7 @@ import javax.swing.JPasswordField;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class AtualizarUsuario extends TelasSecundariasUsuarios{
+public class MenuAtualizarUsuario extends TelasSecundariasUsuarios{
 	private JTextField campoNome;
 	private Dictionary<Integer, JLabel> sliderDic = new Hashtable<>();
 	private JTextField campoEndereco;
@@ -32,7 +32,8 @@ public class AtualizarUsuario extends TelasSecundariasUsuarios{
 	private FileWriter escritor;
 	private final JButton btnCriar = new JButton("Atualizar");
 	private JPasswordField campoSenha;
-	public AtualizarUsuario() {
+	private UsuarioService usuario = new UsuarioService();
+	public MenuAtualizarUsuario() {
 		
 		setResizable(false);
 		setBounds(100, 100, 450, 379);
@@ -115,7 +116,7 @@ public class AtualizarUsuario extends TelasSecundariasUsuarios{
 				}else if(buttonF.isSelected()) {
 					genero = 'F';
 				}
-				UsuarioService.usuario(campoNome.getText(), sliderExp.getValue(), campoEndereco.getText(), genero, campoSenha.getText(),'U');
+				usuario.usuario(campoNome.getText(), sliderExp.getValue(), campoEndereco.getText(), genero, campoSenha.getText(),'U');
 			}
 		});
 		btnCriar.setBounds(163, 297, 110, 36);
@@ -136,7 +137,7 @@ public class AtualizarUsuario extends TelasSecundariasUsuarios{
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				String matricula = TelaLogin.loggedUser;
+				String matricula = MenuLogin.getLogged();
 				sliderExp.setValue(Leitor.getExp(matricula));
 				campoEndereco.setText(Leitor.getEnd(matricula));
 				campoNome.setText((Leitor.getNome(matricula)));

@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JLabel;
+import java.awt.Color;
 
 public class MenuUsuario extends TelasPrincipais {
 
@@ -33,7 +34,6 @@ public class MenuUsuario extends TelasPrincipais {
 		super(campoInformes);
 		
 		setTitle("Sistema Academia");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -50,19 +50,24 @@ public class MenuUsuario extends TelasPrincipais {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Consultar Treinos");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				abrirNovo(8);
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Emitir Treinos");
-		mnNewMenu.add(mntmNewMenuItem_1);
-		
 		JMenu mnNewMenu_1 = new JMenu("Boletos");
+		mnNewMenu_1.setForeground(new Color(255, 0, 0));
 		mnNewMenu_1.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		menuBar.add(mnNewMenu_1);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Consultar Boletos");
+		mntmNewMenuItem_2.setForeground(new Color(255, 0, 0));
 		mnNewMenu_1.add(mntmNewMenuItem_2);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Emitir Boletos");
+		mntmNewMenuItem_3.setForeground(new Color(255, 0, 0));
 		mnNewMenu_1.add(mntmNewMenuItem_3);
 		
 		JMenu mnNewMenu_2 = new JMenu("Minha Conta");
@@ -90,6 +95,11 @@ public class MenuUsuario extends TelasPrincipais {
 		mnNewMenu_3.add(botaoSobre);
 		
 		JMenuItem mntmNewMenuItem_6 = new JMenuItem("Consultar Regras");
+		mntmNewMenuItem_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				abrirNovo(9);
+			}
+		});
 		mnNewMenu_3.add(mntmNewMenuItem_6);
 		
 		JMenu contatoButton = new JMenu("Contato");
@@ -101,6 +111,8 @@ public class MenuUsuario extends TelasPrincipais {
 		});
 		contatoButton.setFont(new Font("SansSerif", Font.PLAIN, 12));
 		menuBar.add(contatoButton);
+		campoInformes.setForeground(new Color(0, 0, 0));
+		campoInformes.setLineWrap(true);
 		
 		campoInformes.setEnabled(false);
 		campoInformes.setEditable(false);
@@ -114,7 +126,7 @@ public class MenuUsuario extends TelasPrincipais {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
-				bemVindo.setText("Bem vindo ao sistema "+TelaLogin.loggedUserName);
+				bemVindo.setText("Bem vindo ao sistema "+MenuLogin.getLoggedName());
 			}
 		});
 			

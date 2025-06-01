@@ -1,5 +1,5 @@
 NOM:Arthur Pereira;
-END:Rua Antônio Zendron 53;
+END:Práticamente morando no IFSC;
 GEN:M;
 EXP:2;
-SEN:aaaaaaaa;
+SEN:zxcvbnm;

@@ -10,9 +10,10 @@ import javax.swing.JOptionPane;
 
 public class UsuarioService {
 	
+	private PopupsService popups = new PopupsService();
 	
-	public static void criarUsuario(String nome, int exp, String endereco, char genero, String senha) {
-		int matricula = TelaLogin.cadastrados;
+	public void criarUsuario(String nome, int exp, String endereco, char genero, String senha) {
+		int matricula = MenuLogin.cadastrados;
 		if(nome.length() > 4 && endereco.length() > 4 && senha.length() > 4) {
 			File novoUsuario = new File("data/users/"+matricula+".txt");
 			FileWriter escritor;
@@ -33,10 +34,10 @@ public class UsuarioService {
 		}
 	}
 		
-		public static void usuario(String nome, int exp, String endereco, char genero, String senha, char mode) {
-			int matricula = TelaLogin.cadastrados;
+		public void usuario(String nome, int exp, String endereco, char genero, String senha, char mode) {
+			int matricula = MenuLogin.cadastrados;
 			if(mode == 'U') {
-				matricula = Integer.parseInt(TelaLogin.loggedUser);
+				matricula = Integer.parseInt(MenuLogin.getLogged());
 			}
 			
 			if(nome.length() > 4 && endereco.length() > 4 && senha.length() > 4) {
@@ -64,14 +65,14 @@ public class UsuarioService {
 			}
 		}
 		
-		public static boolean validar(String validar, String senha) {
+		public boolean validar(String validar, String senha) {
 			if(senha.equals(Leitor.getSenha(validar))) {
 				return true;
 			}
 			return false;
 		}
 		
-		public static File buscarUsuario(String nome) {
+		public File buscarUsuario(String nome) {
 			ArrayList<File> listaDeUsuarios = new ArrayList<File>();
 			listaDeUsuarios.addAll(Arrays.asList(new File("data/users").listFiles()));
 			for (File usuario : listaDeUsuarios) {
@@ -79,7 +80,7 @@ public class UsuarioService {
 					return usuario;
 				}
 			}
-			JOptionPane.showMessageDialog(null, "Usuário não encontrado!", "Erro!", 3);
+			popups.mostrarErro("Usuário não encontrado!");
 			return null;
 		}
 		

@@ -4,7 +4,10 @@ import javax.swing.JFrame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+@SuppressWarnings("serial")
 public abstract class Telas extends JFrame {
+	public PopupsService popups = new PopupsService();
+	
 	public Telas() {
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -27,19 +30,25 @@ public abstract class Telas extends JFrame {
 			new MenuSobre().setVisible(true);
 			break;
 		case 3:
-			new AtualizarUsuario().setVisible(true);
+			new MenuAtualizarUsuario().setVisible(true);
 			break;
 		case 4:
-			new NovoInforme().setVisible(true);
+			new MenuNovoInforme().setVisible(true);
 			break;
 		case 5:
-			new NovoUsuario().setVisible(true);
+			new MenuNovoUsuario().setVisible(true);
 			break;
 		case 6:
 			new MenuCriarTreinos().setVisible(true);
 			break;
 		case 7:
-			new TelaAtribuicaoDeTreinos().setVisible(true);
+			new MenuAtribuicaoDeTreinos().setVisible(true);
+			break;
+		case 8:
+			new MenuFichaTreinoEmitida().setVisible(true);
+			break;
+		case 9:
+			new MenuRegras().setVisible(true);
 			break;
 		default:
 			break;

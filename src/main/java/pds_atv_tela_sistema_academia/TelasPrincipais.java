@@ -15,17 +15,14 @@ public class TelasPrincipais extends Telas{
 	public TelasPrincipais(JTextArea componente) {
 		this.atualizador = new AtualizadorDeTela(componente);
 		timer.schedule(atualizador, 0, 6000);
-	
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosed(WindowEvent arg0) {
-				dispose();
-			}
-		});
+		
+			addWindowListener(new WindowAdapter() {
+				@Override
+				public void windowClosing(WindowEvent arg0) {
+					dispose();
+					MenuLogin.frame.mostrar();
+				}
+			});
 	}
 	
-	
-	
-	
-
 }

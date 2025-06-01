@@ -1,0 +1,5 @@
+NOM:Mateus;
+END:lá pra casa do chapéu;
+GEN:N;
+EXP:1;
+SEN:pipipipi;

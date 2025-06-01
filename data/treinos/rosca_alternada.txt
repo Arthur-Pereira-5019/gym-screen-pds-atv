@@ -1,0 +1,2 @@
+NOM:Rosca Alternada;
+GRU:Biceps;

@@ -115,6 +115,9 @@ public class Leitor {
 	public static String lerTreino(String source) throws IOException {
 		return ler(source,true);
 	}
+	public static String lerFicha(String source) throws IOException {
+		return ler("data/fichas/"+source+".txt",true);
+	}
 	
 	
 

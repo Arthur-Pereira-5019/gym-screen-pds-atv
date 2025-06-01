@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import javax.swing.JPasswordField;
 
-public class NovoUsuario extends JFrame{
+public class MenuNovoUsuario extends TelasSecundariasInstrutor{
 	private JTextField campoNome;
 	private Dictionary<Integer, JLabel> sliderDic = new Hashtable<>();
 	private JTextField campoEndereco;
@@ -30,7 +30,8 @@ public class NovoUsuario extends JFrame{
 	private FileWriter escritor;
 	private final JButton btnCriar = new JButton("Criar");
 	private JPasswordField passwordField;
-	public NovoUsuario() {
+	private UsuarioService usuario = new UsuarioService();
+	public MenuNovoUsuario() {
 		setResizable(false);
 		setBounds(100, 100, 450, 379);
 		sliderDic.put(0, new JLabel("Novato"));
@@ -112,7 +113,7 @@ public class NovoUsuario extends JFrame{
 				}else if(buttonF.isSelected()) {
 					genero = 'F';
 				}
-				UsuarioService.usuario(campoNome.getText(), sliderExp.getValue(), campoEndereco.getText(), genero, passwordField.getText(),'C');
+				usuario.usuario(campoNome.getText(), sliderExp.getValue(), campoEndereco.getText(), genero, passwordField.getText(),'C');
 			}
 		});
 		btnCriar.setBounds(163, 297, 110, 36);

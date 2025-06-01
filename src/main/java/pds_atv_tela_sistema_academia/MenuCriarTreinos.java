@@ -14,13 +14,13 @@ public class MenuCriarTreinos extends TelasSecundariasInstrutor {
 	private JComboBox<String> grupoSelecao;
 	private TreinoService treino = new TreinoService();
 	public MenuCriarTreinos() {
-		setSize(460, 320);
+		setSize(442, 250);
 		
 		getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Novo Treino");
 		lblNewLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-		lblNewLabel.setBounds(163, 10, 120, 24);
+		lblNewLabel.setBounds(173, 10, 120, 24);
 		getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Cadastrar");
@@ -30,7 +30,7 @@ public class MenuCriarTreinos extends TelasSecundariasInstrutor {
 			}
 		});
 		btnNewButton.setFont(new Font("SansSerif", Font.PLAIN, 16));
-		btnNewButton.setBounds(163, 224, 109, 29);
+		btnNewButton.setBounds(163, 175, 109, 29);
 		getContentPane().add(btnNewButton);
 		
 		nomeField = new JTextField();
