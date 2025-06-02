@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.JFrame;
 
 public class MenuLogin extends Telas {
 
@@ -52,6 +53,7 @@ public class MenuLogin extends Telas {
 
 	
 	public MenuLogin() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setBounds(100, 100, 450, 300);
 		JLabel lblNewLabel = new JLabel("Entre com seus dados...");

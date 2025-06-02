@@ -1,0 +1,5 @@
+NOM:Bilu Bilu;
+END:belchior alto;
+GEN:N;
+EXP:3;
+SEN:bilubilu;

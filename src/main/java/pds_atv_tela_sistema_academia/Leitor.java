@@ -99,11 +99,11 @@ public class Leitor {
 	
 	public static char getGenero(String source) {
 		try {
-			String temp = lerTreino(source);
-			int i = temp.indexOf("END:");
+			String temp = lerUsuario(source);
+			int i = temp.indexOf("GEN:");
 			return temp.substring(i+4,temp.indexOf(";", i)).charAt(0);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return 'M';
 	}

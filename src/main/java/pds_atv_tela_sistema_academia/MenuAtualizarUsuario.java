@@ -141,6 +141,15 @@ public class MenuAtualizarUsuario extends TelasSecundariasUsuarios{
 				sliderExp.setValue(Leitor.getExp(matricula));
 				campoEndereco.setText(Leitor.getEnd(matricula));
 				campoNome.setText((Leitor.getNome(matricula)));
+				char genero = Leitor.getGenero(matricula);
+				if(genero == 'M') {
+					buttonM.setSelected(true);
+					return;
+				}else if(genero == 'F') {
+					buttonF.setSelected(true);
+					return;
+				}
+				buttonNB.setSelected(true);
 			}
 		});
 	
