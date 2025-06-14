@@ -32,7 +32,7 @@ public class MenuAtualizarUsuario extends TelasSecundariasUsuarios{
 	private FileWriter escritor;
 	private final JButton btnCriar = new JButton("Atualizar");
 	private JPasswordField campoSenha;
-	private UsuarioService usuario = new UsuarioService();
+
 	public MenuAtualizarUsuario() {
 		
 		setResizable(false);
@@ -116,7 +116,14 @@ public class MenuAtualizarUsuario extends TelasSecundariasUsuarios{
 				}else if(buttonF.isSelected()) {
 					genero = 'F';
 				}
-				usuario.usuario(campoNome.getText(), sliderExp.getValue(), campoEndereco.getText(), genero, campoSenha.getText(),'U');
+				try {
+					MenuLogin.usuarioLogado = new Usuario(campoNome.getText(), sliderExp.getValue(), campoEndereco.getText(), genero, campoSenha.getText(), MenuLogin.frame.usuarioLogado.getMatricula());
+					MenuLogin.usuarioLogado.atualizarUsuario();
+				
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		btnCriar.setBounds(163, 297, 110, 36);

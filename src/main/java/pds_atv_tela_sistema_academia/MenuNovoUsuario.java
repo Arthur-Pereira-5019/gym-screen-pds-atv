@@ -30,7 +30,8 @@ public class MenuNovoUsuario extends TelasSecundariasInstrutor{
 	private FileWriter escritor;
 	private final JButton btnCriar = new JButton("Criar");
 	private JPasswordField passwordField;
-	private UsuarioService usuario = new UsuarioService();
+	private Usuario usuarioACriar;
+
 	public MenuNovoUsuario() {
 		setResizable(false);
 		setBounds(100, 100, 450, 379);
@@ -113,7 +114,9 @@ public class MenuNovoUsuario extends TelasSecundariasInstrutor{
 				}else if(buttonF.isSelected()) {
 					genero = 'F';
 				}
-				usuario.usuario(campoNome.getText(), sliderExp.getValue(), campoEndereco.getText(), genero, passwordField.getText(),'C');
+				usuarioACriar = new Usuario(campoNome.getText(), sliderExp.getValue(), campoEndereco.getText(), genero, passwordField.getText());
+				usuarioACriar.atualizarUsuario();
+			
 			}
 		});
 		btnCriar.setBounds(163, 297, 110, 36);

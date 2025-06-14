@@ -19,7 +19,7 @@ public class MenuAtribuicaoDeTreinos extends TelasSecundariasInstrutor {
 	private JComboBox<String> treinos = null;
 	private JComboBox<String> gruposM = null;
 	private JComboBox<String> gruposT = null;
-	private UsuarioService usuario = new UsuarioService();
+	private Usuario usuario = new Usuario();
 	
 	public MenuAtribuicaoDeTreinos() {
 		
