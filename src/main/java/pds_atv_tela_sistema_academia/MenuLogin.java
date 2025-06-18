@@ -106,24 +106,17 @@ public class MenuLogin extends Telas {
 
 	public void validarCampos() {
 		if (campoMatricula.getText().length() > 0 && campoSenha.getText().length() > 3) {
-
-			if (usuarioService.validar(campoMatricula.getText(), campoSenha.getText())) {
-				usuarioLogado = new Usuario();
-				usuarioLogado.logar();
-
+			try {
+				usuarioLogado.logar(campoMatricula.getText(), campoSenha.getText());
 				if (campoMatricula.getText().equals("root")) {
 					new MenuInstrutor().setVisible(true);
 				} else {
 					new MenuUsuario().setVisible(true);
 				}
-				
-				loggedUser = campoMatricula.getText();
-				loggedUserName = Leitor.getNome(campoMatricula.getText());
-				
 				campoSenha.setText("");
 				campoMatricula.setText("");
 				setVisible(false);
-			} else {
+			} catch(LoginException e) {
 				popups.mostrarErro("SENHA OU MATRÍCULA INCORRETAS!");
 				campoSenha.setText("");
 				campoSenha.requestFocus();

@@ -51,7 +51,20 @@ public class UsuarioRepository {
 			Escritor.escreverComFile(arquivoUsuario, texto);
 		}
 		
-		public File buscarUsuario(String nome) {
+		
+		public File buscarUsuarioMatricula(String matricula) {
+			ArrayList<File> listaDeUsuarios = new ArrayList<File>();
+			listaDeUsuarios.addAll(Arrays.asList(new File("data/users").listFiles()));
+			for (File usuario : listaDeUsuarios) {
+				if(usuario.getName().replace(".txt", "").equals(matricula)) {
+					return usuario;
+				}
+			}
+			popups.mostrarErro("Usuário não encontraado!");
+			return null;
+		}
+		
+		public File buscarUsuarioNome(String nome) {
 			ArrayList<File> listaDeUsuarios = new ArrayList<File>();
 			listaDeUsuarios.addAll(Arrays.asList(new File("data/users").listFiles()));
 			
@@ -64,15 +77,35 @@ public class UsuarioRepository {
 			return null;
 		}
 		
-		public Usuario retornaUsuario(char estrategia,String busca) {
-			File usuarioAchado;
-			Usuario novoUsuario;
+		public Dictionary<String,String> retornaUsuario(char estrategia,String busca) throws LoginException{
+			File usuarioAchado = null;
+			String ref = null;
 			if(estrategia == 'N') {
-				usuarioAchado = buscarUsuario(busca);
+				usuarioAchado = buscarUsuarioMatricula(busca);
+				if(usuarioAchado  == null) {
+					throw new LoginException("Usuário não encontrado!");
+				};
+				ref = usuarioAchado.getName().replace(".txt", "");
 			}
+			return desserializar(ref);
+		}
+		
+		
+		
+		private Dictionary<String, String> desserializar(Object referencia) {
 			Dictionary<String,String> dados = new Hashtable<>();
-			novoUsuario = new Usuario();
-			return novoUsuario;
+
+			String e = referencia.toString();
+
+			dados.put("MAT",e);
+			dados.put("NOM",Leitor.getNome(e));
+			dados.put("END",Leitor.getEnd(e));
+			dados.put("EXP",Leitor.getExp(e).toString());
+			dados.put("GEN",Leitor.getGenero(e).toString());
+			dados.put("SEN",Leitor.getNome(e));
+			
+			return dados;
+			
 		}
 
 }

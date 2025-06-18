@@ -41,13 +41,13 @@ public class Usuario {
 		
 	}
 	
-	public Usuario(Dictionary<String,String> dados) {
-		this.nome = dados.get("Nome");
-		this.exp = Integer.parseInt(dados.get("Exp"));
-		this.endereco = dados.get("Nome");
-		this.genero = dados.get("Genero").charAt(0);
-		this.senha = dados.get("Senha");
-		this.matricula = Integer.parseInt(dados.get("Exp"));
+	public void construirComDicionario(Dictionary<String,String> dados) {
+		this.nome = dados.get("NOM");
+		this.exp = Integer.parseInt(dados.get("EXP"));
+		this.endereco = dados.get("END");
+		this.genero = dados.get("GEN").charAt(0);
+		this.senha = dados.get("SEN");
+		this.matricula = Integer.parseInt(dados.get("MAT"));
 		
 	}
 
@@ -77,9 +77,9 @@ public class Usuario {
 			return null;
 		}
 		
-		public void logar(String validar, String senha) {
+		public void logar(String validar, String senha) throws LoginException{
 			if (validar(validar,senha)) {
-				new Usuario();
+				construirComDicionario(uP.retornaUsuario('N', validar));
 			}
 		}
 		

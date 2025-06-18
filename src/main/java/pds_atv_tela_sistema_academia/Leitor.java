@@ -54,7 +54,7 @@ public class Leitor {
 		return "";
 	}
 	
-	public static int getExp(String source) {
+	public static Integer getExp(String source) {
 		try {
 			String temp = lerUsuario(source);
 			int i = temp.indexOf("EXP:");
@@ -98,7 +98,7 @@ public class Leitor {
 		return "";
 	}
 	
-	public static char getGenero(String source) {
+	public static Character getGenero(String source) {
 		try {
 			String temp = lerUsuario(source);
 			int i = temp.indexOf("GEN:");
