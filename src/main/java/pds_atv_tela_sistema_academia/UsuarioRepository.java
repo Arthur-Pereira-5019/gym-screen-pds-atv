@@ -1,12 +1,11 @@
 package pds_atv_tela_sistema_academia;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import javax.swing.JOptionPane;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 public class UsuarioRepository {
 	
@@ -71,6 +70,7 @@ public class UsuarioRepository {
 			if(estrategia == 'N') {
 				usuarioAchado = buscarUsuario(busca);
 			}
+			Dictionary<String,String> dados = new Hashtable<>();
 			novoUsuario = new Usuario();
 			return novoUsuario;
 		}

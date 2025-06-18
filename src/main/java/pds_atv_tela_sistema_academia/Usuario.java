@@ -1,12 +1,9 @@
 package pds_atv_tela_sistema_academia;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import javax.swing.JOptionPane;
+import java.util.Dictionary;
 
 public class Usuario {
 	
@@ -43,19 +40,30 @@ public class Usuario {
 	public Usuario() {
 		
 	}
+	
+	public Usuario(Dictionary<String,String> dados) {
+		this.nome = dados.get("Nome");
+		this.exp = Integer.parseInt(dados.get("Exp"));
+		this.endereco = dados.get("Nome");
+		this.genero = dados.get("Genero").charAt(0);
+		this.senha = dados.get("Senha");
+		this.matricula = Integer.parseInt(dados.get("Exp"));
+		
+	}
 
 
 	
 	public void atualizarUsuario() {
 		uP.atualizarUsuario(this);
 	}
-		
-		public boolean validar(String validar, String senha) {
-			if(senha.equals(Leitor.getSenha(validar))) {
-				return true;
-			}
-			return false;
+	
+	public boolean validar(String validar, String senha) {
+		if(senha.equals(Leitor.getSenha(validar))) {
+			return true;
 		}
+		return false;
+	}
+
 		
 		public File buscarUsuario(String nome) {
 			ArrayList<File> listaDeUsuarios = new ArrayList<File>();
@@ -69,8 +77,10 @@ public class Usuario {
 			return null;
 		}
 		
-		public void logar() {
-			
+		public void logar(String validar, String senha) {
+			if (validar(validar,senha)) {
+				new Usuario();
+			}
 		}
 		
 
@@ -121,9 +131,6 @@ public class Usuario {
 		public void setMatricula(int matricula) {
 			this.matricula = matricula;
 		}
-		
-		
-		
 		
 		
 	}

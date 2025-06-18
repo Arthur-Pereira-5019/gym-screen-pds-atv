@@ -32,7 +32,8 @@ public class MenuLogin extends Telas {
 	private JPasswordField campoSenha;
 	public static MenuLogin frame;
 	
-	public static Usuario usuarioLogado;
+	public static Usuario usuarioLogado = new Usuario();
+	private UsuarioService usuarioService = new UsuarioService();
 	
 	public static InformeService informeService = new InformeService();
 
@@ -106,7 +107,7 @@ public class MenuLogin extends Telas {
 	public void validarCampos() {
 		if (campoMatricula.getText().length() > 0 && campoSenha.getText().length() > 3) {
 
-			if (usuarioLogado.validar(campoMatricula.getText(), campoSenha.getText())) {
+			if (usuarioService.validar(campoMatricula.getText(), campoSenha.getText())) {
 				usuarioLogado = new Usuario();
 				usuarioLogado.logar();
 
