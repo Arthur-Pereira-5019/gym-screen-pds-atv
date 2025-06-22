@@ -7,12 +7,27 @@ import java.util.Arrays;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
-public class UsuarioRepository {
+public class UsuarioRepository implements UsuarioRepositories{
 	
 	Usuario usuario;
 	PopupsService popups = new PopupsService();
 		
-		public void atualizarUsuario(Usuario usuario) {
+	
+	@Override
+	public void criarUsuario(Usuario usuario) {
+		this.usuario = usuario;
+		String nome = usuario.getNome();
+		String endereco = usuario.getEndereco();
+		String senha = usuario.getSenha();
+		
+		if(nome.length() > 4 && endereco.length() > 4 && senha.length() > 4) {
+			arquivoUsuario();
+		}else {
+			popups.mostrarErro("Os campos estão demasiadamente pequenos!");
+		}
+	}
+	
+	public void atualizarUsuario(Usuario usuario) {
 			this.usuario = usuario;
 			String nome = usuario.getNome();
 			String endereco = usuario.getEndereco();
@@ -107,5 +122,7 @@ public class UsuarioRepository {
 			return dados;
 			
 		}
+
+		
 
 }
