@@ -4,4 +4,11 @@
   <artifactId>pds_atv_tela_sistema_academia</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Tela Sistema Academia</name>
+  <dependencies>
+  <dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.33</version>
+</dependency>
+  </dependencies>
 </project>
