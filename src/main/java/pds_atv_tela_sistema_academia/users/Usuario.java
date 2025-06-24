@@ -61,8 +61,8 @@ public class Usuario {
 		uP.atualizarUsuario(this);
 	}
 	
-	public void criarUsuario() {
-		uP.criarUsuario(this);
+	public boolean criarUsuario() {
+		return uP.criarUsuario(this);
 	}
 	
 	public boolean validar(String validar, String senha) {

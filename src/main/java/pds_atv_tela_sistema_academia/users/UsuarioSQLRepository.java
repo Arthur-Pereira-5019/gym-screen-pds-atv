@@ -1,5 +1,6 @@
 package pds_atv_tela_sistema_academia.users;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -42,16 +43,55 @@ public class UsuarioSQLRepository implements UsuarioRepositories {
 		return desserializar(resultados);
 	}
 	
-	private Dictionary<String, String> desserializar(ResultSet resultados) {
+	private Dictionary<String, String> desserializar(ResultSet resultados) throws LoginException{
 		Dictionary<String,String> dados = new Hashtable<>();
 		try {
 			resultados.next();
-			dados.put("NOM",resultados.getString("nome"));
-			dados.put("GEN",resultados.getString("genero"));
-			dados.put("END",resultados.getString("endereco"));
-			dados.put("EXP",resultados.getString("xp"));
-			dados.put("SEN",resultados.getString("senha"));
-			dados.put("MAT",resultados.getString("matricula"));
+			resultados.toString();
+			
+			String nomeEncontrado = resultados.getString("nome");
+			if(nomeEncontrado == null) {
+				nomeEncontrado = "???";
+			}
+			
+			String generoEncontrado = resultados.getString("nome");
+			if(generoEncontrado == null) {
+				generoEncontrado = "M";
+			}
+			
+			String enderecoEncontrado = resultados.getString("endereco");
+			if(enderecoEncontrado == null) {
+				enderecoEncontrado = "M";
+			}
+			
+			
+			String xpEncontrado = resultados.getString("xp");
+			if(xpEncontrado == null) {
+				xpEncontrado = "1";
+			}
+			
+			
+			String matriculaEncontrada = resultados.getString("matricula");
+			if(matriculaEncontrada == null) {
+				throw new LoginException();
+			}else if (matriculaEncontrada.equals("root")){
+				matriculaEncontrada = "-1";
+			}
+			
+			
+			String senhaEncontrada = resultados.getString("senha");
+			if(senhaEncontrada == null) {
+				senhaEncontrada = matriculaEncontrada;
+			}
+	
+			
+			dados.put("MAT",matriculaEncontrada);
+			dados.put("NOM",nomeEncontrado);
+			dados.put("GEN",generoEncontrado);
+			dados.put("END",enderecoEncontrado);
+			dados.put("EXP",xpEncontrado);
+			dados.put("SEN",senhaEncontrada);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -61,7 +101,7 @@ public class UsuarioSQLRepository implements UsuarioRepositories {
 	}
 
 	@Override
-	public void criarUsuario(Usuario usuario) {
+	public boolean criarUsuario(Usuario usuario) {
 		String sql = "INSERT INTO gym.usuarios (nome, genero, endereco, xp, senha, matricula) VALUES (?, ?, ?, ?, ?, ?)";
 		//create table usuarios(nome varchar(70), genero char(1), endereco varchar(70), xp int(1), senha varchar(16), matricula varchar(6))
 		//insert into usuarios (matricula, senha) values ("root", "root")
@@ -70,18 +110,18 @@ public class UsuarioSQLRepository implements UsuarioRepositories {
 			PreparedStatement statement = con.prepareStatement(sql);
 			statement.setString(1, usuario.getEndereco());
 			statement.setString(2, Character.toString(usuario.getGenero()));
-			statement.setString(2, usuario.getEndereco());
-			statement.setLong(3, usuario.getExp());
-			statement.setString(3, usuario.getSenha());
-			statement.setLong(3, usuario.getMatricula());
+			statement.setString(3, usuario.getEndereco());
+			statement.setLong(4, usuario.getExp());
+			statement.setString(5, usuario.getSenha());
+			statement.setLong(6, usuario.getMatricula());
+			return statement.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		return false;
 		
 	}
-	
 	
 	
 	private void connect() {
@@ -101,6 +141,23 @@ public class UsuarioSQLRepository implements UsuarioRepositories {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public int contar() {
+		ResultSet busca;
+		try {
+			Statement statement = con.createStatement();
+			busca = statement.executeQuery("select count(*) from usuarios");
+			return busca.getInt("count(*)");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+		
+		
 	}
 	
 	

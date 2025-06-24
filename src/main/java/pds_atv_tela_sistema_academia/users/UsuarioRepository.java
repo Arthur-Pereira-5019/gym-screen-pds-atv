@@ -19,7 +19,7 @@ public class UsuarioRepository implements UsuarioRepositories{
 		
 	
 	@Override
-	public void criarUsuario(Usuario usuario) {
+	public boolean criarUsuario(Usuario usuario) {
 		this.usuario = usuario;
 		String nome = usuario.getNome();
 		String endereco = usuario.getEndereco();
@@ -27,9 +27,9 @@ public class UsuarioRepository implements UsuarioRepositories{
 		
 		if(nome.length() > 4 && endereco.length() > 4 && senha.length() > 4) {
 			arquivoUsuario();
-		}else {
-			popups.mostrarErro("Os campos estão demasiadamente pequenos!");
+			return true;
 		}
+		return false;
 	}
 	
 	public void atualizarUsuario(Usuario usuario) {
@@ -126,6 +126,16 @@ public class UsuarioRepository implements UsuarioRepositories{
 			
 			return dados;
 			
+		}
+		
+		public int contar() {
+			try {
+				return Leitor.lerNumeroFilhos("data/sources");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return 0;
 		}
 
 		

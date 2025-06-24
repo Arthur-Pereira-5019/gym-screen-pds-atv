@@ -114,8 +114,13 @@ public class MenuNovoUsuario extends TelasSecundariasInstrutor{
 				}else if(buttonF.isSelected()) {
 					genero = 'F';
 				}
+				
 				usuarioACriar = new Usuario(campoNome.getText(), sliderExp.getValue(), campoEndereco.getText(), genero, passwordField.getText());
-				usuarioACriar.criarUsuario();
+				if(usuarioACriar.criarUsuario()) {
+					popups.mostrarErro("Erro ao criar usuário");
+				} else {
+					popups.mostrarSucesso("Usuário criado com sucesso!");
+				}
 			
 			}
 		});
