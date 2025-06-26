@@ -12,15 +12,18 @@ import pds_atv_tela_sistema_academia.services.Leitor;
 import pds_atv_tela_sistema_academia.services.LoginException;
 import pds_atv_tela_sistema_academia.services.PopupsService;
 
-public class UsuarioRepository implements UsuarioRepositories{
+public class UsuarioRepository extends AbstractUsuarioRepository{
 	
+	UsuarioRepository(Usuario usuario) {
+		super(usuario);
+	}
+
 	Usuario usuario;
 	PopupsService popups = new PopupsService();
 		
 	
 	@Override
-	public boolean criarUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public boolean criarUsuario() {
 		String nome = usuario.getNome();
 		String endereco = usuario.getEndereco();
 		String senha = usuario.getSenha();
@@ -32,8 +35,7 @@ public class UsuarioRepository implements UsuarioRepositories{
 		return false;
 	}
 	
-	public void atualizarUsuario(Usuario usuario) {
-			this.usuario = usuario;
+	public void atualizarUsuario() {
 			String nome = usuario.getNome();
 			String endereco = usuario.getEndereco();
 			String senha = usuario.getSenha();
@@ -137,6 +139,7 @@ public class UsuarioRepository implements UsuarioRepositories{
 			}
 			return 0;
 		}
+
 
 		
 

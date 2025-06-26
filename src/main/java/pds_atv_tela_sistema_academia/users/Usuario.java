@@ -12,7 +12,7 @@ import pds_atv_tela_sistema_academia.services.PopupsService;
 public class Usuario {
 	
 	private PopupsService popups = new PopupsService();
-	private UsuarioSQLRepository uP = new UsuarioSQLRepository();
+	private AbstractUsuarioRepository uR;
 	private String nome;
 	private int exp;
 	private String endereco;
@@ -22,7 +22,7 @@ public class Usuario {
 	
 	
 	public Usuario(String nome, int exp, String endereco, char genero, String senha, int matricula) {
-		super();
+	this();
 		this.nome = nome;
 		this.exp = exp;
 		this.endereco = endereco;
@@ -32,17 +32,18 @@ public class Usuario {
 	}
 	
 	public Usuario(String nome, int exp, String endereco, char genero, String senha) {
-		super();
+		this();
 		this.nome = nome;
 		this.exp = exp;
 		this.endereco = endereco;
 		this.genero = genero;
 		this.senha = senha;
 		this.matricula = Leitor.numeroUsuariosMatriculados();
+		
 	}
 	
 	public Usuario() {
-		
+		uR = new UsuarioSQLRepository(this);
 	}
 	
 	public void construirComDicionario(Dictionary<String,String> dados) {
@@ -58,11 +59,11 @@ public class Usuario {
 
 	
 	public void atualizarUsuario() {
-		uP.atualizarUsuario(this);
+		uR.atualizarUsuario();
 	}
 	
 	public boolean criarUsuario() {
-		return uP.criarUsuario(this);
+		return uR.criarUsuario();
 	}
 	
 	public boolean validar(String validar, String senha) {
@@ -87,7 +88,7 @@ public class Usuario {
 		
 		public void logar(String validar, String senha) throws LoginException{
 			if (validar(validar,senha)) {
-				construirComDicionario(uP.retornaUsuario('N', validar));
+				construirComDicionario(uR.retornaUsuario('N', validar));
 			}
 		}
 		
