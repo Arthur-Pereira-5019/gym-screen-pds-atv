@@ -65,7 +65,7 @@ public class UsuarioSQLRepository extends AbstractUsuarioRepository {
 				nomeEncontrado = "???";
 			}
 			
-			String generoEncontrado = resultados.getString("nome");
+			String generoEncontrado = resultados.getString("genero");
 			if(generoEncontrado == null) {
 				generoEncontrado = "M";
 			}
@@ -160,6 +160,7 @@ public class UsuarioSQLRepository extends AbstractUsuarioRepository {
 		try {
 			Statement statement = con.createStatement();
 			busca = statement.executeQuery("select count(*) from usuarios");
+			busca.next();
 			return busca.getInt("count(*)");
 			
 		} catch (SQLException e) {
@@ -170,8 +171,20 @@ public class UsuarioSQLRepository extends AbstractUsuarioRepository {
 		
 	}
 	
-	public int getSenha() {
-		
+	public String getSenha(String matricula) {
+		ResultSet busca;
+		try {
+			Statement statement = con.createStatement();
+			busca = statement.executeQuery("select senha from usuarios where matricula =\'" + matricula+"\'");
+			if(busca.next()) {
+				return busca.getString("senha");
+
+			}
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "////////";
 	}
 	
 	static public boolean validar(String validar, String senha) {

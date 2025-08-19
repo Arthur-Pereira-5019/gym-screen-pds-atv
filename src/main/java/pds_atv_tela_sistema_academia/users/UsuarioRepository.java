@@ -12,6 +12,7 @@ import pds_atv_tela_sistema_academia.services.Leitor;
 import pds_atv_tela_sistema_academia.services.LoginException;
 import pds_atv_tela_sistema_academia.services.PopupsService;
 
+@Deprecated
 public class UsuarioRepository extends AbstractUsuarioRepository{
 	
 	UsuarioRepository(Usuario usuario) {
@@ -138,6 +139,12 @@ public class UsuarioRepository extends AbstractUsuarioRepository{
 				e.printStackTrace();
 			}
 			return 0;
+		}
+
+		@Override
+		public String getSenha(String matricula) {
+			
+			return Leitor.getSenha(String.valueOf(matricula));
 		}
 
 

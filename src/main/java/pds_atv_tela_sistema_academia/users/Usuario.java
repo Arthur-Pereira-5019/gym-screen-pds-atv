@@ -38,7 +38,7 @@ public class Usuario {
 		this.endereco = endereco;
 		this.genero = genero;
 		this.senha = senha;
-		this.matricula = Leitor.numeroUsuariosMatriculados();
+		this.matricula = uR.contar();
 		
 	}
 	
@@ -55,8 +55,6 @@ public class Usuario {
 		this.matricula = Integer.parseInt(dados.get("MAT"));
 		
 	}
-
-
 	
 	public void atualizarUsuario() {
 		uR.atualizarUsuario();
@@ -67,7 +65,7 @@ public class Usuario {
 	}
 	
 	public boolean validar(String validar, String senha) {
-		if(senha.equals(Leitor.getSenha(validar))) {
+		if(senha.equals(uR.getSenha(validar))) {
 			return true;
 		}
 		return false;
@@ -87,9 +85,10 @@ public class Usuario {
 		}
 		
 		public void logar(String validar, String senha) throws LoginException{
-			if (validar(validar,senha)) {
-				construirComDicionario(uR.retornaUsuario('N', validar));
+			if (!validar(validar,senha)) {
+				throw new LoginException();
 			}
+				construirComDicionario(uR.retornaUsuario('N', validar));
 		}
 		
 

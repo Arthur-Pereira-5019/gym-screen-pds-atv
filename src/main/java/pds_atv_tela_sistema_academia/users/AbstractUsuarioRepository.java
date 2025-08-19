@@ -16,5 +16,6 @@ public abstract class AbstractUsuarioRepository {
 	public abstract Dictionary<String,String> retornaUsuario(char estrategia, String busca) throws LoginException;
 	public abstract boolean criarUsuario();
 	public abstract int contar();
-	
+	public abstract String getSenha(String matricula);
+
 }
