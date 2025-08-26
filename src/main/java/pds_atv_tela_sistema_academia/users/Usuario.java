@@ -65,6 +65,8 @@ public class Usuario {
 	}
 	
 	public boolean validar(String validar, String senha) {
+		System.out.println(validar);
+		System.out.println(uR.getSenha(validar));
 		if(senha.equals(uR.getSenha(validar))) {
 			return true;
 		}

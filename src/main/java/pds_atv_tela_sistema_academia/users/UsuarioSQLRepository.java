@@ -178,7 +178,6 @@ public class UsuarioSQLRepository extends AbstractUsuarioRepository {
 			busca = statement.executeQuery("select senha from usuarios where matricula =\'" + matricula+"\'");
 			if(busca.next()) {
 				return busca.getString("senha");
-
 			}
 		}catch (SQLException e) {
 			// TODO Auto-generated catch block
