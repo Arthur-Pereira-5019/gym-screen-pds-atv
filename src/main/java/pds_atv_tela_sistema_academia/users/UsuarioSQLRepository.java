@@ -9,17 +9,17 @@ import java.sql.Statement;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
+import pds_atv_tela_sistema_academia.services.BancoDeDados;
 import pds_atv_tela_sistema_academia.services.Leitor;
 import pds_atv_tela_sistema_academia.services.LoginException;
 import pds_atv_tela_sistema_academia.services.PopupsService;
 
 public class UsuarioSQLRepository extends AbstractUsuarioRepository {
-	Connection con;
+	Connection con = BancoDeDados.getConnection();
 	PopupsService popups;
 
 	public UsuarioSQLRepository(Usuario usuario) {
 		super(usuario);
-		tryConnect();
 	}
 	
 	
@@ -132,26 +132,6 @@ public class UsuarioSQLRepository extends AbstractUsuarioRepository {
 		}
 		return false;
 		
-	}
-	
-	
-	private void connect() {
-		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/gym","root","Art.DB25");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private void tryConnect() {
-		try {
-			if(con == null || con.isClosed() || !con.isValid(100)) {
-				connect();
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	@Override
