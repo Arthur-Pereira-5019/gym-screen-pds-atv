@@ -16,16 +16,24 @@ public class ExercicioSQLRepository {
 	*/
 	
 	public Exercicio salvarExercicio(Exercicio e) {
-		String sql = "Insert into gym.exercicios (nomeTreino, grupo) values (?, ?)";
+		String sql = "insert into gym.exercicios (nomeTreino, grupo) values (?, ?)";
 		try {
 			PreparedStatement s = c.prepareStatement(sql);
-			s.setString(0, sql);
+			s.setString(0, e.getNomeTreino());
+			s.setString(1, e.getGrupo());
 			s.execute();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		return e;
+	}
+	
+	public Exercicio deletarExercicio(String nomeTreino) {
+		
+	}
+	
+	public Exercicio encontrarExercicio(String nomeExercicio) {
+		
 	}
 
 }
