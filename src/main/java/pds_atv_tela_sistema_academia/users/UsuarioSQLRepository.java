@@ -76,7 +76,7 @@ public class UsuarioSQLRepository extends AbstractUsuarioRepository {
 			}
 			
 			
-			String expEncontrado = resultados.getString("exp");
+			String expEncontrado = resultados.getString("xp");
 			if(expEncontrado == null) {
 				expEncontrado = "1";
 			}
@@ -113,7 +113,7 @@ public class UsuarioSQLRepository extends AbstractUsuarioRepository {
 
 	@Override
 	public boolean criarUsuario() {
-		String sql = "INSERT INTO gym.usuarios (nome, genero, endereco, exp, senha, matricula) VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO gym.usuarios (nome, genero, endereco, xp, senha, matricula) VALUES (?, ?, ?, ?, ?, ?)";
 		//create table usuarios(nome varchar(70), genero char(1), endereco varchar(70), xp int(1), senha varchar(16), matricula varchar(6))
 		//insert into usuarios (matricula, senha) values ("root", "root")
 		

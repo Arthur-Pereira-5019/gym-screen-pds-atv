@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 import javax.swing.DefaultComboBoxModel;
 
+import pds_atv_tela_sistema_academia.exceptions.ResourceNotFoundException;
 import pds_atv_tela_sistema_academia.services.Escritor;
 import pds_atv_tela_sistema_academia.services.Leitor;
 import pds_atv_tela_sistema_academia.services.PopupsService;
@@ -19,6 +20,7 @@ public class TreinoService {
 	File pastaFichas = new File("data/fichas");
 	private PopupsService popups = new PopupsService();
 	private File fichaAlvo;
+	ExercicioSQLRepository tr = new ExercicioSQLRepository();
 
 	
 	public TreinoService() {
@@ -41,25 +43,18 @@ public class TreinoService {
 		modelo.addElement("Ombro");
 	}
 	
-	//Parte dos Treinos
 	public void criarTreino(String nomeTreino, String grupo) {
-		File novoTreino = new File(pastaTreinos+"/"+ nomeTreino.toLowerCase().replace(" ", "_")+".txt");
-		try {
-			novoTreino.createNewFile();
-			String textoFinal = "NOM:"+nomeTreino+";\nGRU:"+grupo+";";
-			Escritor.escreverComFile(novoTreino, textoFinal);
-			popups.mostrarSucesso("Sucesso ao criar o treino!");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			popups.mostrarErro("Erro ao criar treino!");
-		}
+		tr.salvarExercicio(new Exercicio(nomeTreino, grupo));
 	}
-	
-	
 	//Funções de suporte
 	
 	public String buscaTipo(String exercicio) {
-		return Leitor.getGrupoTreino(treinoPraArquivo(exercicio));
+		try {
+			return tr.encontrarExercicio(exercicio).grupo;
+		} catch (ResourceNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public String treinoPraArquivo(String exercicio) {

@@ -21,8 +21,8 @@ public class ExercicioSQLRepository {
 		String sql = "insert into gym.exercicios (nomeTreino, grupo) values (?, ?)";
 		try {
 			PreparedStatement s = c.prepareStatement(sql);
-			s.setString(0, e.getNomeTreino());
-			s.setString(1, e.getGrupo());
+			s.setString(1, e.getNomeTreino());
+			s.setString(2, e.getGrupo());
 			s.execute();
 		} catch (SQLException e1) {
 			e1.printStackTrace();
