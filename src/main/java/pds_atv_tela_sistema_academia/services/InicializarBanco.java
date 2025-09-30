@@ -17,6 +17,7 @@ public class InicializarBanco {
 			statements.add(c.prepareStatement("create table exercicio (nome varchar(70), grupo varchar(60))"));
 			statements.add(c.prepareStatement("create table usuario (nome varchar(120), xp int(1), endereco varchar(120), genero char(1), senha varchar(20), matricula int(12))"));
 			
+			
 			statements.forEach(s -> {
 				try {
 					s.execute();
